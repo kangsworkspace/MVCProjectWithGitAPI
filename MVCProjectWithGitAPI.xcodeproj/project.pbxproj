@@ -32,6 +32,7 @@
 		3BDFC1AC2C20099500ECE1C6 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		3BDFC1AE2C20123E00ECE1C6 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		3BDFC1B02C2018A200ECE1C6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3BDFC1B22C20205800ECE1C6 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +74,7 @@
 				3BE3AB292C1EE6F100A5C6A3 /* Views */,
 				3B58ACDB2C1EBF41008B1A3F /* Assets.xcassets */,
 				3B58ACE02C1EBF41008B1A3F /* Info.plist */,
+				3BDFC1B22C20205800ECE1C6 /* Secrets.xcconfig */,
 			);
 			path = MVCProjectWithGitAPI;
 			sourceTree = "<group>";
