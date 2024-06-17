@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 import Then
 
@@ -77,6 +78,18 @@ final class MainViewController: UIViewController {
         }
     }
     
+    /// URL로 이동하는 함수
+    /// - Parameter url:(String) : 이동할 URL
+    /// - Parameter fromVC:(UIViewController) : 기준이 되는 뷰 컨트롤러
+    func goWebPage(url: String) {
+        if url != "등록된 정보가 없습니다" {
+            guard let url = URL(string: url) else { return }
+            let safariViewController = SFSafariViewController(url: url)
+            safariViewController.modalPresentationStyle = .automatic
+            self.present(safariViewController, animated: true)
+        }
+    }
+    
     // 다른 화면을 눌렀을 때 키보드 내리기
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -139,7 +152,8 @@ extension MainViewController: UITableViewDelegate {
         if searchView.textField.isFirstResponder {
             self.view.endEditing(true)
         } else {
-            // URL 이동 로직
+            guard let url = gitAPIModel.userInfos?[indexPath.row].url else { return }
+            goWebPage(url: url)
         }
     }
     
