@@ -74,7 +74,6 @@
 				3BE3AB292C1EE6F100A5C6A3 /* Views */,
 				3B58ACDB2C1EBF41008B1A3F /* Assets.xcassets */,
 				3B58ACE02C1EBF41008B1A3F /* Info.plist */,
-				3BDFC1B22C20205800ECE1C6 /* Secrets.xcconfig */,
 			);
 			path = MVCProjectWithGitAPI;
 			sourceTree = "<group>";
@@ -158,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				3BDFC1B02C2018A200ECE1C6 /* Constants.swift */,
+				3BDFC1B22C20205800ECE1C6 /* Secrets.xcconfig */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -266,6 +266,7 @@
 /* Begin XCBuildConfiguration section */
 		3B58ACE12C1EBF41008B1A3F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3BDFC1B22C20205800ECE1C6 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -329,6 +330,7 @@
 		};
 		3B58ACE22C1EBF41008B1A3F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3BDFC1B22C20205800ECE1C6 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -385,6 +387,7 @@
 		};
 		3B58ACE42C1EBF41008B1A3F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3BDFC1B22C20205800ECE1C6 /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -417,6 +420,7 @@
 		};
 		3B58ACE52C1EBF41008B1A3F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3BDFC1B22C20205800ECE1C6 /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
