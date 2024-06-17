@@ -7,12 +7,11 @@
 
 import UIKit
 
-import Moya
 import Then
 
 final class MainViewController: UIViewController {
     // MARK: - Feild
-    let provider = MoyaProvider<GitAPIService>()
+    let gitAPIModel = GitAPIModel.shared
     
     // MARK: - Layouts
     private lazy var searchView = SearchView().then {
@@ -34,7 +33,7 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         
         setMain()
-        login()
+        gitAPIModel.login()
     }
     
     // MARK: - Functions
@@ -67,21 +66,6 @@ final class MainViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
         ])
-    }
-    
-    /// 깃 로그인
-    func login() {
-        provider.request(.gitLogin) { result in
-            switch result {
-            case .success(let response):
-                if let url = response.request?.url {
-                    // 웹 브라우저에서 URL 열기
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                }
-            case .failure(let error):
-                print("GitHub 로그인을 시작하지 못했습니다:", error)
-            }
-        }
     }
     
     // clearButton 히든 처리 로직

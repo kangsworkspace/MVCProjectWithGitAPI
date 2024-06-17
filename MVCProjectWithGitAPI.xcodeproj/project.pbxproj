@@ -20,6 +20,7 @@
 		3BDFC1B12C2018A200ECE1C6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDFC1B02C2018A200ECE1C6 /* Constants.swift */; };
 		3BDFC1B72C202F6400ECE1C6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDFC1B62C202F6400ECE1C6 /* Extensions.swift */; };
 		3BDFC1B92C20419400ECE1C6 /* GitAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDFC1B82C20419400ECE1C6 /* GitAPIService.swift */; };
+		3BDFC1BB2C20532B00ECE1C6 /* GitAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDFC1BA2C20532B00ECE1C6 /* GitAPIModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		3BDFC1B22C20205800ECE1C6 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		3BDFC1B62C202F6400ECE1C6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3BDFC1B82C20419400ECE1C6 /* GitAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitAPIService.swift; sourceTree = "<group>"; };
+		3BDFC1BA2C20532B00ECE1C6 /* GitAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitAPIModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,12 +126,13 @@
 			path = TableView;
 			sourceTree = "<group>";
 		};
-		3BDFC1B32C202D9F00ECE1C6 /* GitAPIService */ = {
+		3BDFC1B32C202D9F00ECE1C6 /* GitAPI */ = {
 			isa = PBXGroup;
 			children = (
+				3BDFC1BA2C20532B00ECE1C6 /* GitAPIModel.swift */,
 				3BDFC1B82C20419400ECE1C6 /* GitAPIService.swift */,
 			);
-			path = GitAPIService;
+			path = GitAPI;
 			sourceTree = "<group>";
 		};
 		3BE3AB272C1EE6E000A5C6A3 /* Apps */ = {
@@ -144,7 +147,7 @@
 		3BE3AB282C1EE6EA00A5C6A3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				3BDFC1B32C202D9F00ECE1C6 /* GitAPIService */,
+				3BDFC1B32C202D9F00ECE1C6 /* GitAPI */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				3BDFC1B12C2018A200ECE1C6 /* Constants.swift in Sources */,
 				3B58ACD52C1EBF41008B1A3F /* SceneDelegate.swift in Sources */,
 				3BDFC1AF2C20123E00ECE1C6 /* TableViewCell.swift in Sources */,
+				3BDFC1BB2C20532B00ECE1C6 /* GitAPIModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

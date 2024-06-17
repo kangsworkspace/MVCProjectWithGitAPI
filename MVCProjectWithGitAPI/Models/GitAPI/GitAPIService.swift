@@ -10,13 +10,19 @@ import UIKit
 import Moya
 
 enum GitAPIService {
+    /// 깃 로그인
     case gitLogin
+    /// RestAPI를 사용하기 위해 Git 토큰 가져오기
+    /// - Parameter tempCode:(String) : 깃 로그인을 통해 발급받은 tempCode
+    case gitToken
 }
 
 extension GitAPIService: TargetType {
     var baseURL: URL {
         switch self {
         case .gitLogin:
+            return URL(string: "https://github.com")!
+        case .gitToken:
             return URL(string: "https://github.com")!
         }
     }
@@ -25,6 +31,8 @@ extension GitAPIService: TargetType {
         switch self {
         case .gitLogin:
             return "/login/oauth/authorize"
+        case .gitToken:
+            return"/login/oauth/access_token"
         }
     }
     
@@ -32,6 +40,8 @@ extension GitAPIService: TargetType {
         switch self {
         case .gitLogin:
             return .get
+        case .gitToken:
+            return .post
         }
     }
     
@@ -51,6 +61,27 @@ extension GitAPIService: TargetType {
             ]
             
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
+            
+        case .gitToken:
+            guard let clientID = Bundle.main.cliendID else {
+                print("cliendID를 로드하지 못했습니다.")
+                return .requestPlain
+            }
+            
+            guard let clientSecrets = Bundle.main.clientSecrets else {
+                print("cliendID를 로드하지 못했습니다.")
+                return .requestPlain
+            }
+            
+            let tempCode = Constants.tempCode
+            
+            let parameters: [String: Any] = [
+                "client_id": clientID,
+                "client_secret": clientSecrets,
+                "code": tempCode
+            ]
+            
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
         }
     }
     
@@ -58,6 +89,8 @@ extension GitAPIService: TargetType {
         switch self {
         case .gitLogin:
             return nil
+        case .gitToken:
+            return ["Accept": "application/json"]
         }
     }
 }
