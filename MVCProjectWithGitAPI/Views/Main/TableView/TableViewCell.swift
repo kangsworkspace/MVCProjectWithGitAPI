@@ -21,6 +21,14 @@ class TableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        userImageView.image = nil
+        nameLabel.text = nil
+        urlLabel.text = nil
+    }
+    
     // MARK: - Layouts
     /// 유저 아바타 이미지 뷰
     lazy var userImageView = UIImageView().then {
