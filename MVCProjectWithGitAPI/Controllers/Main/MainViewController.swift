@@ -11,6 +11,7 @@ import Then
 
 final class MainViewController: UIViewController {
     // MARK: - Feild
+    let gitHubService = GitHubService.shared
     
     // MARK: - Layouts
     private lazy var searchView = SearchView().then {
@@ -32,6 +33,7 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         
         setMain()
+        gitHubService.login()
     }
     
     // MARK: - Functions
