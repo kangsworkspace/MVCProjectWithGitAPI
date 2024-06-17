@@ -43,7 +43,7 @@ final class SearchView: UIView {
     }
     
     // search 텍스트 필드
-    private(set) var searchTextField = UITextField().then {
+    private(set) var textField = UITextField().then {
         $0.backgroundColor = .clear
         $0.placeholder = "유저 검색"
         $0.autocapitalizationType = .none
@@ -75,7 +75,7 @@ final class SearchView: UIView {
     }
     
     private func setAddView() {
-        searchStackView.addArrangedSubview(searchTextField)
+        searchStackView.addArrangedSubview(textField)
         searchStackView.addArrangedSubview(clearButton)
         searchStackView.addArrangedSubview(searchButton)
         backgroundView.addSubview(searchStackView)
