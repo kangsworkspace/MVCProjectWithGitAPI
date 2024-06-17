@@ -18,8 +18,8 @@
 		3BDFC1AD2C20099500ECE1C6 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDFC1AC2C20099500ECE1C6 /* TableView.swift */; };
 		3BDFC1AF2C20123E00ECE1C6 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDFC1AE2C20123E00ECE1C6 /* TableViewCell.swift */; };
 		3BDFC1B12C2018A200ECE1C6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDFC1B02C2018A200ECE1C6 /* Constants.swift */; };
-		3BDFC1B52C202E2400ECE1C6 /* GitHubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDFC1B42C202E2400ECE1C6 /* GitHubService.swift */; };
 		3BDFC1B72C202F6400ECE1C6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDFC1B62C202F6400ECE1C6 /* Extensions.swift */; };
+		3BDFC1B92C20419400ECE1C6 /* GitAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDFC1B82C20419400ECE1C6 /* GitAPIService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,8 +35,8 @@
 		3BDFC1AE2C20123E00ECE1C6 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		3BDFC1B02C2018A200ECE1C6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3BDFC1B22C20205800ECE1C6 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
-		3BDFC1B42C202E2400ECE1C6 /* GitHubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubService.swift; sourceTree = "<group>"; };
 		3BDFC1B62C202F6400ECE1C6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		3BDFC1B82C20419400ECE1C6 /* GitAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitAPIService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,7 +127,7 @@
 		3BDFC1B32C202D9F00ECE1C6 /* GitAPIService */ = {
 			isa = PBXGroup;
 			children = (
-				3BDFC1B42C202E2400ECE1C6 /* GitHubService.swift */,
+				3BDFC1B82C20419400ECE1C6 /* GitAPIService.swift */,
 			);
 			path = GitAPIService;
 			sourceTree = "<group>";
@@ -255,12 +255,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BDFC1AD2C20099500ECE1C6 /* TableView.swift in Sources */,
+				3BDFC1B92C20419400ECE1C6 /* GitAPIService.swift in Sources */,
 				3BDFC1B72C202F6400ECE1C6 /* Extensions.swift in Sources */,
 				3B58ACD72C1EBF41008B1A3F /* MainViewController.swift in Sources */,
 				3BDFC1A42C1F34B700ECE1C6 /* SearchView.swift in Sources */,
 				3B58ACD32C1EBF41008B1A3F /* AppDelegate.swift in Sources */,
 				3BDFC1B12C2018A200ECE1C6 /* Constants.swift in Sources */,
-				3BDFC1B52C202E2400ECE1C6 /* GitHubService.swift in Sources */,
 				3B58ACD52C1EBF41008B1A3F /* SceneDelegate.swift in Sources */,
 				3BDFC1AF2C20123E00ECE1C6 /* TableViewCell.swift in Sources */,
 			);
