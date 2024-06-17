@@ -16,6 +16,7 @@ final class MainViewController: UIViewController {
 
     // MARK: - Layouts
     private lazy var searchView = SearchView().then {
+        $0.textField.delegate = self
         $0.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         $0.clearButton.addTarget(self, action: #selector(clearButtonTapped), for: .touchUpInside)
         $0.searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
@@ -76,6 +77,11 @@ final class MainViewController: UIViewController {
         }
     }
     
+    // 다른 화면을 눌렀을 때 키보드 내리기
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     // clearButton 히든 처리 로직
     @objc func textFieldDidChange() {
         if searchView.textField.text == "" {
@@ -95,6 +101,8 @@ final class MainViewController: UIViewController {
     @objc func searchButtonTapped() {
         guard let text = searchView.textField.text else { return }
         gitAPIModel.fetchUserData(userID: text, type: .searching)
+        
+        self.view.endEditing(true)
     }
 }
 
@@ -128,7 +136,11 @@ extension MainViewController: UITableViewDataSource {
 // UITableView의 델리게이트 설정을 위한 extension
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-     
+        if searchView.textField.isFirstResponder {
+            self.view.endEditing(true)
+        } else {
+            // URL 이동 로직
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -140,5 +152,16 @@ extension MainViewController: UITableViewDelegate {
         if tableView.contentOffset.y > (tableView.contentSize.height - tableView.bounds.size.height - 120) {
             gitAPIModel.fetchUserData(userID: "Paging", type: .paging)
         }
+    }
+}
+
+// UITextField의 델리게이트 설정을 위한 extension
+extension MainViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.text != "" {
+            searchButtonTapped()
+        }
+        
+        return true
     }
 }
