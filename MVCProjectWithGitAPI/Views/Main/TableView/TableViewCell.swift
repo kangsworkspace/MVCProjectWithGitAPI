@@ -9,7 +9,7 @@ import UIKit
 
 import Then
 
-class TableViewCell: UITableViewCell {
+final class TableViewCell: UITableViewCell {
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)

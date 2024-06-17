@@ -30,6 +30,11 @@ final class MainViewController: UIViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
+    private var emptyView = EmptyView().then {
+        $0.isHidden = true
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
     // MARK: - Life Cycels
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +44,7 @@ final class MainViewController: UIViewController {
     }
     
     // MARK: - Functions
-    func setMain() {
+    private func setMain() {
         // 배경화면 색상 설정
         view.backgroundColor = .white
         
@@ -49,12 +54,13 @@ final class MainViewController: UIViewController {
         setBinding()
     }
     
-    func setAddView() {
+    private func setAddView() {
         view.addSubview(searchView)
         view.addSubview(tableView)
+        view.addSubview(emptyView)
     }
     
-    func setAutoLayout() {
+    private func setAutoLayout() {
         // searchView AutoLayout
         NSLayoutConstraint.activate([
             searchView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
@@ -69,23 +75,41 @@ final class MainViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
         ])
+        
+        // emptyView AutoLayout
+        NSLayoutConstraint.activate([
+            emptyView.topAnchor.constraint(equalTo: searchView.bottomAnchor, constant: 40),
+            emptyView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
+            emptyView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
+        ])
     }
     
-    func setBinding() {
+    private func setBinding() {
         gitAPIModel.didChangeUserInfos = { [self] _ in
             tableView.tableView.reloadData()
+            checkEmpty()
         }
     }
     
     /// URL로 이동하는 함수
     /// - Parameter url:(String) : 이동할 URL
     /// - Parameter fromVC:(UIViewController) : 기준이 되는 뷰 컨트롤러
-    func goWebPage(url: String) {
+    private func goWebPage(url: String) {
         if url != "등록된 정보가 없습니다" {
             guard let url = URL(string: url) else { return }
             let safariViewController = SFSafariViewController(url: url)
             safariViewController.modalPresentationStyle = .automatic
             self.present(safariViewController, animated: true)
+        }
+    }
+    
+    private func checkEmpty() {
+        let userInfos = gitAPIModel.userInfos
+        
+        if userInfos?.isEmpty == true {
+            emptyView.isHidden = false
+        } else {
+            emptyView.isHidden = true
         }
     }
     
@@ -113,7 +137,6 @@ final class MainViewController: UIViewController {
     @objc func searchButtonTapped() {
         guard let text = searchView.textField.text else { return }
         gitAPIModel.fetchUserData(userID: text, type: .searching)
-        
         self.view.endEditing(true)
     }
 }

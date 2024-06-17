@@ -13,7 +13,7 @@ import UIKit
 final class GitAPIModel {
     // MARK: - Field
     static let shared = GitAPIModel()
-    let provider = MoyaProvider<GitAPIService>()
+    private let provider = MoyaProvider<GitAPIService>()
     
     // 유저 정보
     var userInfos: [UserInfo]? {
@@ -24,11 +24,11 @@ final class GitAPIModel {
     /// userInfos 변경 시 동작할 함수를 담기 위한 코드
     var didChangeUserInfos: ((GitAPIModel) -> Void)?
     /// 검색 페이지(페이징 처리)
-    var pageNum = 1
+    private var pageNum = 1
     /// 페이징 처리 시 비동기 처리를 위한 값
-    var isFetching: Bool = false
+    private var isFetching: Bool = false
     /// 중복 검색 요청을 방지하기 위한 변수
-    var tempSearchText: String?
+    private var tempSearchText: String?
     
     // MARK: - Init
     private init() {}
