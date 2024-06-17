@@ -55,7 +55,7 @@ final class SearchView: UIView {
     }
     
     // clear 버튼
-    private let searchClearButton = UIButton().then {
+    private(set) var clearButton = UIButton().then {
         $0.isHidden = true
         $0.setImage(UIImage(systemName: "x.circle")?.withTintColor(.lightGray, renderingMode: .alwaysOriginal), for: .normal)
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -76,7 +76,7 @@ final class SearchView: UIView {
     
     private func setAddView() {
         searchStackView.addArrangedSubview(searchTextField)
-        searchStackView.addArrangedSubview(searchClearButton)
+        searchStackView.addArrangedSubview(clearButton)
         searchStackView.addArrangedSubview(searchButton)
         backgroundView.addSubview(searchStackView)
         self.addSubview(backgroundView)
@@ -105,9 +105,9 @@ final class SearchView: UIView {
             
             // Inner
             
-            // searchClearButton
-            searchClearButton.widthAnchor.constraint(equalToConstant: 30),
-            searchClearButton.trailingAnchor.constraint(equalTo: searchButton.leadingAnchor, constant: 0),
+            // clearButton
+            clearButton.widthAnchor.constraint(equalToConstant: 30),
+            clearButton.trailingAnchor.constraint(equalTo: searchButton.leadingAnchor, constant: 0),
         
             // searchButton
             searchButton.widthAnchor.constraint(equalToConstant: 30),

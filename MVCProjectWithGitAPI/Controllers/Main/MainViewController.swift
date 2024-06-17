@@ -13,7 +13,8 @@ final class MainViewController: UIViewController {
     // MARK: - Feild
     
     // MARK: - Layouts
-    private let searchView = SearchView().then {
+    private lazy var searchView = SearchView().then {
+        $0.searchTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -44,6 +45,17 @@ final class MainViewController: UIViewController {
             searchView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             searchView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15)
         ])
+    }
+    
+    
+    
+    // Clear 버튼 히든 처리 로직
+    @objc func textFieldDidChange() {
+        if searchView.searchTextField.text == "" {
+            searchView.clearButton.isHidden = true
+        } else {
+            searchView.clearButton.isHidden = false
+        }
     }
 }
 
