@@ -10,9 +10,6 @@ import UIKit
 import Then
 
 final class SearchView: UIView {
-    // MARK: - Fields
-    
-    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
