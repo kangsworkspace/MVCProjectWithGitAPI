@@ -20,6 +20,13 @@ final class MainViewController: UIViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
+    private lazy var tableView = TableView().then {
+        $0.tableView.dataSource = self
+        $0.tableView.delegate = self
+        
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
     // MARK: - Life Cycels
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,17 +46,25 @@ final class MainViewController: UIViewController {
     
     func setAddView() {
         view.addSubview(searchView)
+        view.addSubview(tableView)
     }
     
     func setAutoLayout() {
+        // searchView AutoLayout
         NSLayoutConstraint.activate([
             searchView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
             searchView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            searchView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15)
+            searchView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
+        ])
+        
+        // TableView AutoLayout
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
+            tableView.topAnchor.constraint(equalTo: searchView.bottomAnchor, constant: 10),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
         ])
     }
-    
-    
     
     // clearButton 히든 처리 로직
     @objc func textFieldDidChange() {
@@ -78,4 +93,22 @@ final class MainViewController: UIViewController {
 }
 
 // MARK: - Extensions
+// UITableView의 dataSource 설정을 위한 extension
+extension MainViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 12
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        cell.backgroundColor = .blue
+        return cell
+    }
+}
 
+// UITableView의 델리게이트 설정을 위한 extension
+extension MainViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+     
+    }
+}
