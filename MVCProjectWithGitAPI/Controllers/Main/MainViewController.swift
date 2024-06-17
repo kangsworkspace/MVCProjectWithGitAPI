@@ -27,7 +27,6 @@ final class MainViewController: UIViewController {
     private lazy var tableView = TableView().then {
         $0.tableView.dataSource = self
         $0.tableView.delegate = self
-        $0.tableView.register(TableViewCell.self, forCellReuseIdentifier: Constants.cellIdentifier)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -128,6 +127,7 @@ extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier, for: indexPath) as! TableViewCell
+        cell.selectionStyle = .none
         
         guard let userInfos = gitAPIModel.userInfos else { return cell }
         
