@@ -33,6 +33,7 @@ class TableView: UIView {
     // 테이블 뷰
     private(set) var tableView = UITableView().then {
         $0.rowHeight = 70
+        $0.register(TableViewCell.self, forCellReuseIdentifier: Constants.cellIdentifier)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     

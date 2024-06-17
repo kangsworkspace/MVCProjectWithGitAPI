@@ -28,7 +28,6 @@ final class ImageCacheModel {
     /// - 캐싱된 이미지가 없을 경우 URL을 통해 네트워크에서 이미지를 불러옵니다.
     func loadImage(urlString: String, completion: @escaping (UIImage?) -> Void) {
         if let image = cache.object(forKey: urlString as NSString) {
-            print("cache load 성공")
             completion(image)
             return
         } else {
