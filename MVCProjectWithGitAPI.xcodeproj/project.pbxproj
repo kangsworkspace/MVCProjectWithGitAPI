@@ -32,6 +32,7 @@
 		3BDFC1AC2C20099500ECE1C6 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		3BDFC1AE2C20123E00ECE1C6 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		3BDFC1B02C2018A200ECE1C6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3BDFC1B22C20205800ECE1C6 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				3BDFC1B02C2018A200ECE1C6 /* Constants.swift */,
+				3BDFC1B22C20205800ECE1C6 /* Secrets.xcconfig */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -264,6 +266,7 @@
 /* Begin XCBuildConfiguration section */
 		3B58ACE12C1EBF41008B1A3F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3BDFC1B22C20205800ECE1C6 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -327,6 +330,7 @@
 		};
 		3B58ACE22C1EBF41008B1A3F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3BDFC1B22C20205800ECE1C6 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -383,6 +387,7 @@
 		};
 		3B58ACE42C1EBF41008B1A3F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3BDFC1B22C20205800ECE1C6 /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -415,6 +420,7 @@
 		};
 		3B58ACE52C1EBF41008B1A3F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3BDFC1B22C20205800ECE1C6 /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
