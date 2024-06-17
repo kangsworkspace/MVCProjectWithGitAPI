@@ -24,6 +24,10 @@ final class GitAPIModel {
     var didChangeUserInfos: ((GitAPIModel) -> Void)?
     /// 검색 페이지(페이징 처리)
     var pageNum = 1
+    /// 페이징 처리 시 비동기 처리를 위한 값
+    var isFetching: Bool = false
+    /// 중복 검색 요청을 방지하기 위한 변수
+    var tempSearchText: String?
     
     // MARK: - Init
     private init() {}
@@ -67,8 +71,29 @@ final class GitAPIModel {
     /// - Parameter page:(Int) : 페이징 처리를 위한 페이지 값
     /// - Parameter type:(GetUserInfoType) : 초기 검색 / 추가 검색을 나누는 타입
     /// - returns: 클로져로 종료 시점을 전달
-    func fetchUserData(userID: String, type: UserInfoSearchType, completion: @escaping () -> Void) {
-        provider.request(.gitUserInfo(userID: userID, page: self.pageNum)) { [self] result in
+    func fetchUserData(userID: String, type: UserInfoSearchType) {
+        // 검색 문자열이 비어있을 때 동작 X
+        guard !userID.isEmpty else { return }
+        // 중복 검색 방지
+        guard !isFetching else { return }
+        
+        // 검색 상태 처리
+        isFetching = true
+        
+        // 검색할 유저 ID
+        var searchUserID = ""
+        
+        switch type {
+        case .paging:
+            searchUserID = tempSearchText ?? ""
+            pageNum += 1
+        case .searching:
+            tempSearchText = userID
+            searchUserID = userID
+            pageNum = 1
+        }
+
+        provider.request(.gitUserInfo(userID: searchUserID, page: self.pageNum)) { [self] result in
             switch result {
             case .success(let response):
                 do {
@@ -82,18 +107,18 @@ final class GitAPIModel {
                     switch type {
                     case .searching:
                         userInfos = resultArray.userInfo
-                        completion()
+                        isFetching = false
                         return
                     case .paging:
                         guard var tempUserInfo = userInfos else {
                             userInfos = resultArray.userInfo
-                            completion()
+                            isFetching = false
                             return
                         }
                         
                         tempUserInfo += resultArray.userInfo
                         userInfos = tempUserInfo
-                        completion()
+                        isFetching = false
                         return
                     }
                 } catch let error {

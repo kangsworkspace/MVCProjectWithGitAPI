@@ -12,7 +12,7 @@ import Then
 final class MainViewController: UIViewController {
     // MARK: - Feild
     let gitAPIModel = GitAPIModel.shared
-    
+
     // MARK: - Layouts
     private lazy var searchView = SearchView().then {
         $0.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
@@ -44,6 +44,7 @@ final class MainViewController: UIViewController {
         // 레이아웃 설정들
         setAddView()
         setAutoLayout()
+        setBinding()
     }
     
     func setAddView() {
@@ -68,6 +69,12 @@ final class MainViewController: UIViewController {
         ])
     }
     
+    func setBinding() {
+        gitAPIModel.didChangeUserInfos = { [self] _ in
+            tableView.tableView.reloadData()
+        }
+    }
+    
     // clearButton 히든 처리 로직
     @objc func textFieldDidChange() {
         if searchView.textField.text == "" {
@@ -86,11 +93,7 @@ final class MainViewController: UIViewController {
     // searchButton 동작 로직
     @objc func searchButtonTapped() {
         guard let text = searchView.textField.text else { return }
-        
-        // textField가 비어있을 때 동작 X
-        guard !text.isEmpty else { return }
-        
-        print("검색 버튼 눌림")
+        gitAPIModel.fetchUserData(userID: text, type: .searching)
     }
 }
 
@@ -98,12 +101,17 @@ final class MainViewController: UIViewController {
 // UITableView의 dataSource 설정을 위한 extension
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 12
+        return gitAPIModel.userInfos?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier, for: indexPath) as! TableViewCell
-        cell.backgroundColor = .blue
+        
+        guard let userInfos = gitAPIModel.userInfos else { return cell }
+        
+        cell.nameLabel.text = userInfos[indexPath.row].login
+        cell.urlLabel.text = userInfos[indexPath.row].url
+        
         return cell
     }
 }
@@ -112,5 +120,16 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
      
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // 검새 결과가 없을 때 동작하지 않음
+        guard gitAPIModel.userInfos != nil else { return }
+        let tableView = tableView.tableView
+        
+        // tableView를 거의 끝까지 내렸을 때 추가 검색
+        if tableView.contentOffset.y > (tableView.contentSize.height - tableView.bounds.size.height - 120) {
+            gitAPIModel.fetchUserData(userID: "Paging", type: .paging)
+        }
     }
 }
