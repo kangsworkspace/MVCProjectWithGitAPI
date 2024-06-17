@@ -12,6 +12,7 @@ import Then
 final class MainViewController: UIViewController {
     // MARK: - Feild
     let gitAPIModel = GitAPIModel.shared
+    let imageCacheModel = ImageCacheModel.shared
 
     // MARK: - Layouts
     private lazy var searchView = SearchView().then {
@@ -111,6 +112,14 @@ extension MainViewController: UITableViewDataSource {
         
         cell.nameLabel.text = userInfos[indexPath.row].login
         cell.urlLabel.text = userInfos[indexPath.row].url
+        
+        // 이미지 캐싱처리
+        imageCacheModel.loadImage(urlString: userInfos[indexPath.row].avatarURL) { image in
+            // 메인 쓰레드에서 이미지 변경
+            DispatchQueue.main.async {
+                cell.userImageView.image = image
+            }
+        }
         
         return cell
     }

@@ -5,9 +5,10 @@
 //  Created by Healthy on 6/17/24.
 //
 
-import UIKit
+import Foundation
 
 import Moya
+import UIKit
 
 final class GitAPIModel {
     // MARK: - Field
