@@ -62,7 +62,7 @@ final class SearchView: UIView {
     }
     
     // search 버튼
-    private let searchButton = UIButton().then {
+    private(set) var searchButton = UIButton().then {
         $0.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }

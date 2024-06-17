@@ -14,8 +14,9 @@ final class MainViewController: UIViewController {
     
     // MARK: - Layouts
     private lazy var searchView = SearchView().then {
-        $0.clearButton.addTarget(self, action: #selector(clearButtonTapped), for: .touchUpInside)
         $0.textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        $0.clearButton.addTarget(self, action: #selector(clearButtonTapped), for: .touchUpInside)
+        $0.searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -63,6 +64,16 @@ final class MainViewController: UIViewController {
     @objc func clearButtonTapped() {
         searchView.textField.text = ""
         searchView.clearButton.isHidden = true
+    }
+    
+    // searchButton 동작 로직
+    @objc func searchButtonTapped() {
+        guard let text = searchView.textField.text else { return }
+        
+        // textField가 비어있을 때 동작 X
+        guard !text.isEmpty else { return }
+        
+        print("검색 버튼 눌림")
     }
 }
 
