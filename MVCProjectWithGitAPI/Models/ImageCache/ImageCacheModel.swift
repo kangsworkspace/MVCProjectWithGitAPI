@@ -13,7 +13,7 @@ final class ImageCacheModel {
     // MARK: - Field
     static let shared = ImageCacheModel()
     private let cache = NSCache<NSString, UIImage>()
-    let provider = MoyaProvider<ImageCacheService>()
+    private let provider = MoyaProvider<ImageCacheService>()
     
     // MARK: - Init
     private init() {
