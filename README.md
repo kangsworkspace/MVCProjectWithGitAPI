@@ -57,18 +57,14 @@ git clone https://github.com/kangsworkspace/MVCProjectWithGitAPI
  
  - <b> 커스텀 SearchView 구현 </b>
  
-  |<img src="./img/TextField.gif" width="30%"/> | <img src="./img/ClearButton.gif" width="30%"/> |
+  |<img src="./img/TextField.gif" width="60%"/> | <img src="./img/ClearButton.gif" width="60%"/> | 
   |--|--|
  
  - <b> API사용, 페이징 처리, 이미지 캐싱처리 구현 </b>
+  <img src="./img/Functions.gif" width="30%"/>  
 
-  |<img src="./img/Functions.gif" width="30%"/> |
-  |--|
-  
  - <b> URL주소로 이동(SafariServices) </b>
- 
-  |<img src="./img/Moving.gif" width="30%"/> |
-  |--|
+  <img src="./img/Moving.gif" width="30%"/>
 
 ## Library
 - [Then](https://github.com/devxoul/Then)
