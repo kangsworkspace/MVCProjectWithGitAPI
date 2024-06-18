@@ -52,9 +52,24 @@ git clone https://github.com/kangsworkspace/MVCProjectWithGitAPI
 
 ### 구현 내용(구현 내용은 다른 ProjectWithGitAPI와 동일합니다)
  - <b> 깃 로그인 구현(임시 코드 및 access_token 획득) </b>
+ 
+  |![로그인 구현1](./img/Login1.jpg) | ![로그인 구현2](./img/Login2.gif) |
+  |--|--|
+ 
  - <b> 커스텀 SearchView 구현 </b>
+ 
+  |![커스텀 SearchView](./img/TextField.gif) | ![클리어 버튼](./img/ClearButton.gif) |
+  |--|--|
+ 
  - <b> API사용, 페이징 처리, 이미지 캐싱처리 구현 </b>
- - <b> URL주소로 이동() </b>
+
+  |![Functions](./img/Functions.gif) |
+  |--|
+  
+ - <b> URL주소로 이동(SafariServices) </b>
+ 
+  |![Moving](./img/Moving.gif) |
+  |--|
 
 ## Library
 - [Then](https://github.com/devxoul/Then)
