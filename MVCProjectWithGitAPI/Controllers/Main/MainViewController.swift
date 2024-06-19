@@ -93,7 +93,6 @@ final class MainViewController: UIViewController {
     
     /// URL로 이동하는 함수
     /// - Parameter url:(String) : 이동할 URL
-    /// - Parameter fromVC:(UIViewController) : 기준이 되는 뷰 컨트롤러
     private func goWebPage(url: String) {
         if url != "등록된 정보가 없습니다" {
             guard let url = URL(string: url) else { return }
@@ -153,15 +152,13 @@ extension MainViewController: UITableViewDataSource {
         cell.selectionStyle = .none
         
         guard let userInfos = gitAPIModel.userInfos else { return cell }
-        
-        cell.nameLabel.text = userInfos[indexPath.row].login
-        cell.urlLabel.text = userInfos[indexPath.row].url
+        cell.setConfig(name: userInfos[indexPath.row].login, urlString: userInfos[indexPath.row].url)
         
         // 이미지 캐싱처리
         imageCacheModel.loadImage(urlString: userInfos[indexPath.row].avatarURL) { image in
             // 메인 쓰레드에서 이미지 변경
             DispatchQueue.main.async {
-                cell.userImageView.image = image
+                cell.setImage(image: image)
             }
         }
         
