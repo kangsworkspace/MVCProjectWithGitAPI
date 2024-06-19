@@ -24,6 +24,7 @@ final class TableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
+        activityIndicator.startAnimating()
         userImageView.image = nil
         nameLabel.text = nil
         urlLabel.text = nil
@@ -31,13 +32,13 @@ final class TableViewCell: UITableViewCell {
     
     // MARK: - Layouts
     /// 유저 아바타 이미지 뷰
-    lazy var userImageView = UIImageView().then {
+    private lazy var userImageView = UIImageView().then {
         $0.backgroundColor = .clear
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
     /// 유저 이름
-    var nameLabel = UILabel().then {
+    private var nameLabel = UILabel().then {
         $0.numberOfLines = 1
         $0.adjustsFontSizeToFitWidth = true
         $0.minimumScaleFactor = 0.5
@@ -46,10 +47,15 @@ final class TableViewCell: UITableViewCell {
     }
     
     /// 유저 URL
-    var urlLabel = UILabel().then {
+    private var urlLabel = UILabel().then {
         $0.numberOfLines = 1
         $0.adjustsFontSizeToFitWidth = true
         $0.minimumScaleFactor = 0.4
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    /// 로딩 인디케이터
+    private let activityIndicator = UIActivityIndicatorView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -63,6 +69,7 @@ final class TableViewCell: UITableViewCell {
         self.addSubview(userImageView)
         self.addSubview(nameLabel)
         self.addSubview(urlLabel)
+        self.addSubview(activityIndicator)
     }
     
     func setAutoLayout() {
@@ -93,5 +100,23 @@ final class TableViewCell: UITableViewCell {
             
             urlLabel.heightAnchor.constraint(equalToConstant: 20)
         ])
+        
+        // activityIndicator
+        NSLayoutConstraint.activate([
+            activityIndicator.leadingAnchor.constraint(equalTo: userImageView.leadingAnchor, constant: 0),
+            activityIndicator.topAnchor.constraint(equalTo: userImageView.topAnchor, constant: 0),
+            activityIndicator.trailingAnchor.constraint(equalTo: userImageView.trailingAnchor, constant: 0),
+            activityIndicator.bottomAnchor.constraint(equalTo: userImageView.bottomAnchor, constant: 0),
+        ])
+    }
+    
+    func setConfig(name: String, urlString: String) {
+        nameLabel.text = name
+        urlLabel.text = urlString
+    }
+    
+    func setImage(image: UIImage?) {
+        activityIndicator.stopAnimating()
+        userImageView.image = image
     }
 }
