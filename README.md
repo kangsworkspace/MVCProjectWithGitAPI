@@ -1,5 +1,7 @@
 # MVCProjectWithGitAPI
 
+<img src="./img/MVCMain.png" width="30%"/>  
+
 ### 프로젝트 소개(ProjectWithGitAPI)  
 이전에 혼자 진행한 작은 프로젝트를 디자인 패턴을 맞추는 것에 중점을 두고 다시 프로젝트를 구성했습니다.  
 당시에는 `MVVM` 아키텍처로 구현했었지만 진행하는 과정에서 스스로 디자인 패턴에 대한 이해도가 부족하다고 느꼈습니다.  
